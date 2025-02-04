@@ -1,9 +1,6 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 USERNAME = "standard_user"
@@ -30,7 +27,6 @@ def browser():
 
 
 def test_shopping_flow(browser):
-    # Шаг 1: Открыть сайт магазина
     browser.get("https://www.saucedemo.com/")
 
     username_field = browser.find_element(By.ID, "user-name")

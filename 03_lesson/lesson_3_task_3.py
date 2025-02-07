@@ -11,4 +11,3 @@ print (f"From: {mailing.from_address.postal_code}, {mailing.from_address.city}, 
 print (f"To: {mailing.to_address.postal_code}, {mailing.to_address.city}, {mailing.to_address.street}, "
        f"{mailing.to_address.house}, {mailing.to_address.apartment}")
 print (f"Cost: {mailing.cost}")
-

@@ -2,7 +2,7 @@ import pytest
 from Project import ProjectAPI
 
 BASE_URL = "https://ru.yougile.com/api-v2"
-API_KEY = 
+API_KEY =
 
 @pytest.fixture
 def project_api():

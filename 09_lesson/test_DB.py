@@ -1,5 +1,5 @@
 import pytest
-from DB  import UserTable
+from DB import UserTable
 
 @pytest.fixture
 def database():
@@ -30,18 +30,15 @@ def test_update_user(database):
     user_email = "old.user@example.com"
     subject_id = 10
 
-    # Создаем пользователя с тем же user_id
     database.create_user(unused_id, user_email, subject_id)
 
-    # Обновляем только email и subject_id, но user_id остается прежним
     new_email = "updated.user@example.com"
     new_subject_id = 15
     database.update_user(unused_id, new_email, new_subject_id)
 
-    # Проверяем, что обновился только email и subject_id
     rows = database.get_user_by_id(unused_id)
     assert len(rows) == 1
-    assert rows[0]._mapping["user_id"] == unused_id  # user_id не изменился
+    assert rows[0]._mapping["user_id"] == unused_id
     assert rows[0]._mapping["user_email"] == new_email
     assert rows[0]._mapping["subject_id"] == new_subject_id
 

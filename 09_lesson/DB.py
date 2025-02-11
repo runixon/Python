@@ -1,11 +1,9 @@
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
-# Подключение к базе данных
 DATABASE_URI = 'postgresql://postgres:pass@localhost:5432/postgres'
 engine = create_engine(DATABASE_URI, echo=True)
 Session = sessionmaker(bind=engine)
-
 
 class UserTable:
     def __init__(self):
@@ -15,11 +13,9 @@ class UserTable:
     __scripts = {
         "select_all": text("SELECT * FROM users"),
         "select_by_id": text("SELECT * FROM users WHERE user_id = :user_id"),
-        "insert": text(
-            "INSERT INTO users (user_id, user_email, subject_id) VALUES (:user_id, :user_email, :subject_id) RETURNING user_id"),
+        "insert": text("INSERT INTO users (user_id, user_email, subject_id) VALUES (:user_id, :user_email, :subject_id) RETURNING user_id"),
         "delete_by_id": text("DELETE FROM users WHERE user_id = :user_id RETURNING user_id, user_email, subject_id"),
-        "update": text(
-            "UPDATE users SET user_email = :new_email, subject_id = :new_subject_id WHERE user_id = :user_id"),
+        "update": text("UPDATE users SET user_email = :new_email, subject_id = :new_subject_id WHERE user_id = :user_id"),
         "get_all_ids": text("SELECT user_id FROM users")
     }
 
@@ -62,6 +58,4 @@ class UserTable:
     def close(self):
         self.session.close()
 
-
-# Создаем экземпляр базы
 user_table = UserTable()
